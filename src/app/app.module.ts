@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { translations, translationChunksConfig } from '@spartacus/assets';
 import { B2cStorefrontModule } from '@spartacus/storefront';
+import {ConfigModule} from '@spartacus/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,15 @@ import { B2cStorefrontModule } from '@spartacus/storefront';
         level: '3.1',
       },
     }),
+    ConfigModule.withConfig({
+      routing: {
+        routes: {
+          product: {
+            paths: ['products/:productCode', 'prodotti/:productCode', 'productos/:productCode']
+          }
+        }
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
