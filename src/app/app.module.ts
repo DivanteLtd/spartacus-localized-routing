@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { translations, translationChunksConfig } from '@spartacus/assets';
 import { B2cStorefrontModule } from '@spartacus/storefront';
 import {ConfigModule} from '@spartacus/core';
+import {CustomRoutingModule} from './custom-routing/custom-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,15 +30,7 @@ import {ConfigModule} from '@spartacus/core';
         level: '3.1',
       },
     }),
-    ConfigModule.withConfig({
-      routing: {
-        routes: {
-          product: {
-            paths: ['products/:productCode', 'prodotti/:productCode', 'productos/:productCode']
-          }
-        }
-      }
-    })
+    CustomRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
