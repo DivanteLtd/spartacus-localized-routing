@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { translations, translationChunksConfig } from '@spartacus/assets';
 import { B2cStorefrontModule } from '@spartacus/storefront';
-import {ConfigModule} from '@spartacus/core';
-import {CustomRoutingModule} from './custom-routing/custom-routing.module';
+import { LocalizedRoutingModule } from './localized-routing/localized-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +29,7 @@ import {CustomRoutingModule} from './custom-routing/custom-routing.module';
         level: '3.1',
       },
     }),
-    CustomRoutingModule
+    LocalizedRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
