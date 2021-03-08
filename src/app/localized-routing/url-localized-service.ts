@@ -56,7 +56,12 @@ export class UrlLocalizedService {
     const result = {};
     Object.keys(params).forEach((paramKey) => {
       const mappedKey = paramsMapping[paramKey];
-      result[mappedKey] = params[paramKey];
+
+      if (mappedKey) {
+        result[mappedKey] = params[paramKey];
+      } else {
+        result[paramKey] = params[paramKey];
+      }
     });
     return result;
   }
