@@ -7,6 +7,7 @@ import {
 } from '@spartacus/core';
 import { CustomSemanticPathService } from './custom-semantic-path.service';
 import { I18nRoutingConfig } from './i18n-routing.config';
+import { UrlLocalizedService } from './url-localized-service';
 
 const i18nRoutingConfig: I18nRoutingConfig = {
   i18nRouting: {
@@ -57,6 +58,12 @@ const i18nRoutingConfig: I18nRoutingConfig = {
       provide: APP_INITIALIZER,
       useFactory: (sps: CustomSemanticPathService) => () => sps.initialize(),
       deps: [CustomSemanticPathService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (uls: UrlLocalizedService) => () => uls.initialize(),
+      deps: [UrlLocalizedService],
       multi: true,
     },
   ],
