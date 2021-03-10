@@ -1,22 +1,18 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import {
-  Config,
-  ConfigModule,
-  RoutingConfig,
-  SemanticPathService,
-} from '@spartacus/core';
+import { Config, ConfigModule, SemanticPathService } from '@spartacus/core';
 import { CustomSemanticPathService } from './custom-semantic-path.service';
 import { I18nRoutingConfig } from './i18n-routing.config';
+import { generateRoutingConfig } from './localized-routing.utils';
 import { UrlLocalizedService } from './url-localized-service';
 
 const i18nRoutingConfig: I18nRoutingConfig = {
   i18nRouting: {
     product: {
       en: {
-        paths: ['products/:productCode'],
+        paths: ['products/:productCode/:name'],
       },
       de: {
-        paths: ['produkten/:productCode'],
+        paths: ['produkten/:productCode/:name'],
       },
     },
     category: {
@@ -24,7 +20,7 @@ const i18nRoutingConfig: I18nRoutingConfig = {
         paths: ['category/:categoryCode'],
       },
       de: {
-        paths: ['category/:categoryCode'],
+        paths: ['kategorien/:categoryCode'],
       },
     },
   },
@@ -32,25 +28,7 @@ const i18nRoutingConfig: I18nRoutingConfig = {
 
 @NgModule({
   declarations: [],
-  imports: [
-    ConfigModule.withConfig(i18nRoutingConfig as I18nRoutingConfig),
-    ConfigModule.withConfig({
-      routing: {
-        routes: {
-          product: {
-            paths: Array.prototype.concat.apply(
-              [],
-              Object.values(i18nRoutingConfig.i18nRouting.product).map(
-                (value) => {
-                  return value.paths;
-                }
-              )
-            ),
-          },
-        },
-      },
-    } as RoutingConfig),
-  ],
+  imports: [ConfigModule.withConfig(generateRoutingConfig(i18nRoutingConfig))],
   providers: [
     { provide: I18nRoutingConfig, useExisting: Config },
     { provide: SemanticPathService, useExisting: CustomSemanticPathService },
