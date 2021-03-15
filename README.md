@@ -1,27 +1,43 @@
 # SpartacusLocalizedRouting
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.1.
+This is an example implementation of localized routing for ths Spartacus storefront, which enables to configure automatically adjusted URL paths on the change of applications language.
 
-## Development server
+Implemented solution allows to change the configured links in the application, as well as the current URL.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Running application
 
-## Code scaffolding
+To run the application simply clone the repository and run following:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`yarn install`
+`yarn start`
 
-## Build
+or
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`npm install`
+`npm start`
 
-## Running unit tests
+## Configuration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The configuration of translated paths can be found in `localized-routing.module`. Following example shows a configuration of English and German paths for the product page:
 
-## Running end-to-end tests
+```javascript
+  i18nRouting: {
+      product: {
+        en: {
+          paths: ['products/:productCode/:name'],
+        },
+        de: {
+          paths: ['produkten/:productCode/:name'],
+        },
+      }
+    }
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+You can configure your own localized paths in the `localized-routing.module`.
 
-## Further help
+## SemanticPathService
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Current solution includes the `custom-semantic-path.service`, that overwrites the core `semantic-path.service`. The implementation of this service can be simplified after the following Spartacus issues are resolved:
+
+https://github.com/SAP/spartacus/issues/3623
+https://github.com/SAP/spartacus/issues/11373
