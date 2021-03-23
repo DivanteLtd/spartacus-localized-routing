@@ -2,19 +2,23 @@
 
 This is an example implementation of localized routing for ths Spartacus storefront, which enables to configure automatically adjusted URL paths on the change of applications language.
 
+You can see the live example [here](https://spartacus-localized-routing.herokuapp.com/electronics-spa/)
+
 # Running application
 
 To run the application simply clone the repository and run following:
 
 `yarn install`
 
-`yarn start`
+`yarn start:local`
 
 or
 
 `npm install`
 
-`npm start`
+`npm start:local`
+
+The application will run on `localhost:4200`
 
 ## Configuration
 
